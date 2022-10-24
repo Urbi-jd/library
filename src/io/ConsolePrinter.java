@@ -6,27 +6,49 @@ import model.Magazine;
 import model.Publication;
 
 import java.util.Collection;
+import java.util.Objects;
 
-public class ConsolePrinter {
+ public class ConsolePrinter {
 
 
-    public void printBooks(Collection<Publication> publications) {
-        publications.stream()
+    public long printBooks(Collection<Publication> publications) {
+        long count = publications.stream()
                 .filter(publication -> publication instanceof Book)
-                .forEach(pub -> printLine(pub.toString()));
+                .map(Publication::toString)
+                .peek(this::printLine)
+                .count();
+        if(count == 0)
+            printLine("Brak magazynów do wyświetlenia");
+        return count;
     }
 
-    public void printMagazines(Collection<Publication> publications) {
-        for (Publication publication : publications) {
-            if(publication instanceof Magazine)
-                printLine(publication.toString());
-        }
+    public long printMagazines(Collection<Publication> publications) {
+//        for (Publication publication : publications) {
+//            if(publication instanceof Magazine)
+//                printLine(publication.toString());
+//        }
+        long count = publications.stream()
+                .filter(p -> p instanceof Magazine)
+                .map(Publication::toString)
+                .peek(this::printLine)
+                .count();
+        if(count == 0)
+            printLine("Brak książek do wyświetlenia");
+        return count;
     }
 
-    public void printAll(Collection<Publication> publications) {
-        for (Publication publication : publications) {
-            printLine(publication.toString());
-        }
+    public long printAll(Collection<Publication> publications) {
+
+        long count = publications.stream()
+                .filter(Objects::nonNull)
+                .map(Publication::toString)
+                .peek(this::printLine)
+                .count();
+        if(count == 0)
+            printLine("Brak książek do wyświetlenia");
+        return count;
+
+
     }
 
     public void printUsers(Collection<LibraryUser> libraryUsers){

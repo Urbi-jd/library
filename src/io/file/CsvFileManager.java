@@ -6,6 +6,7 @@ import exceptions.InvalidDataException;
 import model.*;
 
 import java.io.*;
+import java.time.Year;
 import java.util.Collection;
 
 public class CsvFileManager implements FileManager {
@@ -84,7 +85,7 @@ public class CsvFileManager implements FileManager {
     private Publication crerateBook(String[] split) {
         String title = split[1];
         String publisher = split[2];
-        int year = Integer.parseInt((split[3]));
+        int year = Integer.parseInt(split[3]);
         String author = split[4];
         int pages = Integer.parseInt(split[5]);
         String isbn = split[6];

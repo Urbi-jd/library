@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.time.Year;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -21,7 +22,7 @@ public class Library implements Serializable {
     // testing publications
     Book excampleBok1 = new Book("Przykładowa książka 1", "Urbi", 2022, 1, "Urbi");
     Book excampleBok2 = new Book("Przykładowa książka 2", "Urbi", 2021, 11, "Urbix");
-    Magazine excampleMagazine1 = new Magazine("Przykładowy magazyn 1", "Urbinox", 2022, 05, 28, "polski");
+    Magazine excampleMagazine1 = new Magazine("Przykładowy magazyn 1", "Urbinox", 2022, 5, 28, "polski");
 
 //    @Override
 //    public String toString() {

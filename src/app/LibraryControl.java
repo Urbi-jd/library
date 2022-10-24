@@ -111,17 +111,18 @@ public class LibraryControl {
 
     private Map<Integer, Publication> erasedPublicationsMap(String title) {
         int counter = 1;
-        Map<Integer, Publication> searczedPublicationsMap = new HashMap<>();
-        Set<Map.Entry<Integer, Publication>> foundEntries = searczedPublicationsMap.entrySet();
+        Map<Integer, Publication> searchedPublicationsMap = new HashMap<>();
         Set<Map.Entry<String, Publication>> entries = library.getPublications().entrySet();
+
         for (Map.Entry<String, Publication> entry : entries) {
             if (entry.getKey().contains(title)) {
-                searczedPublicationsMap.put(counter, entry.getValue());
+                searchedPublicationsMap.put(counter, entry.getValue());
                 counter++;
             }
         }
-        return searczedPublicationsMap;
+        return searchedPublicationsMap;
     }
+
 
     private Publication searchPublications(Map<Integer, Publication> erasedPubMap) {
         Publication publication = null;
@@ -136,22 +137,6 @@ public class LibraryControl {
             publication = erasedPubMap.get(option);
         }
         return publication;
-    }
-
-    private Option getOption() {
-        boolean optionOK = false;
-        Option option = null;
-        while (!optionOK) {
-            try {
-                option = Option.createFromInt(dataReader.getInt());
-                optionOK = true;
-            } catch (NoSuchOptionException e) {
-                printer.printLine(e.getMessage() + ", podaj ponownie");
-            } catch (InputMismatchException ignored) {
-                printer.printLine("Wprowadzono wartość, która nie jest liczbą, podaj ponownie:");
-            }
-        }
-        return option;
     }
 
     private void printOptions() {
@@ -172,6 +157,22 @@ public class LibraryControl {
 
     private Collection<Publication> getPublicationsList() {
         return library.getPublications().values();
+    }
+
+    private Option getOption() {
+        boolean optionOK = false;
+        Option option = null;
+        while (!optionOK) {
+            try {
+                option = Option.createFromInt(dataReader.getInt());
+                optionOK = true;
+            } catch (NoSuchOptionException e) {
+                printer.printLine(e.getMessage() + ", podaj ponownie");
+            } catch (InputMismatchException ignored) {
+                printer.printLine("Wprowadzono wartość, która nie jest liczbą, podaj ponownie:");
+            }
+        }
+        return option;
     }
 
     private void addMagazine() {

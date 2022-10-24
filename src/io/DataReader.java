@@ -60,11 +60,10 @@ public class DataReader {
         int releaseDay = getInt();
         printer.printLine("język: ");
         String language = sc.nextLine();
-
         return new Magazine(title, publisher, releaseYear, releaseMonth, releaseDay, language);
     }
 
-    public LibraryUser readAndCreateLibraryUser(){
+    public LibraryUser readAndCreateLibraryUser() {
         printer.printLine("Podaj imię urzytkownika");
         String firstName = sc.nextLine();
         printer.printLine("Podaj nazwisko urzytkownika");
